@@ -3,7 +3,8 @@
 Gamebuino gb;
 char mode = 'v';
 
-
+int xPanier = 50;
+int yPanier = 20;
 int IBallex = 6;
 int IBalley = 38;
 int t = IBallex;
