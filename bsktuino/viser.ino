@@ -10,11 +10,13 @@ void viser(){
     if (gb.buttons.repeat(BTN_LEFT,1)){
     NViser -= PI/64;
   }
-    if (gb.buttons.repeat(BTN_A,1)){
+    if (gb.buttons.repeat(BTN_B,1)){
     FViser += 1;
   }
-  if (gb.buttons.released(BTN_A) || (FViser >= 8)){
+  if (gb.buttons.released(BTN_B) || (FViser >= 16)){
+    FViser *= 2;
     t = 0;
     mode = 'p';
     }
 }
+

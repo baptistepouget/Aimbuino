@@ -7,10 +7,9 @@ int xPanier = 50;
 int yPanier = 20;
 int IBallex = 6;
 int IBalley = 38;
-int t = IBallex;
+float t = 0;
 float NViser = (1/4)*PI;
 float FViser = 5;
-
 void physique();
 void viser();
 void decor();
@@ -26,6 +25,7 @@ Balle balle;
 
 
 void setup() {
+  Serial.begin(9600);
   gb.begin();
   initJeu();
   gb.titleScreen(F("Basketuino"));
@@ -51,6 +51,7 @@ void loop() {
   }
 
 }
+
 
 
 

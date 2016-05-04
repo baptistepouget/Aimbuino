@@ -5,5 +5,7 @@ void initJeu(){
   balle.y = IBalley;
   NViser = (1/4)*PI;
   FViser = 5;
-  t = IBallex;
+  t = 0;
+  mode = 'v';
 }
+
