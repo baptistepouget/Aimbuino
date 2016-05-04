@@ -1,8 +1,22 @@
 #include <SPI.h>
 #include <Gamebuino.h>
 Gamebuino gb;
-char mode = 'v';
 
+const byte Cible[] PROGMEM = {8,8,
+B00011000,
+B01111110,
+B01100110,
+B11011011,
+B11011011,
+B01100110,
+B01111110,
+B00011000,
+};
+
+char mode = 'v';
+int score = 0;
+int mscore = 0;
+int lPanier = 12;
 int xPanier = 50;
 int yPanier = 20;
 int IBallex = 6;
@@ -25,10 +39,11 @@ Balle balle;
 
 
 void setup() {
-  Serial.begin(9600);
+  //Serial.begin(9600);
   gb.begin();
   initJeu();
   gb.titleScreen(F("Basketuino"));
+  gb.pickRandomSeed();
 
 }
 
@@ -43,9 +58,11 @@ void loop() {
       viser();
       break;
     }
+    decor();
     if (gb.buttons.pressed(BTN_C)) {
       gb.titleScreen(F("Basketuino"));
       initJeu(); 
+      score = 0;
       }
     gb.display.drawCircle(balle.x,balle.y,balle.r);
   }

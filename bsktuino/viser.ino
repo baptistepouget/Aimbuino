@@ -17,6 +17,7 @@ void viser(){
     FViser *= 2;
     t = 0;
     mode = 'p';
+    gb.sound.playTick();
     }
 }
 

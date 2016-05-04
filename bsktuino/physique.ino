@@ -4,8 +4,23 @@ void physique(){
   t += 0.1;
   balle.x =  FViser * cos(NViser) *  t + IBallex;
   balle.y = (0.5)*10*t*t + FViser * sin(NViser) * t + IBalley;
-  Serial.println("?");
-  Serial.println(t);
+  if ((balle.y > LCDHEIGHT)||(balle.x > LCDWIDTH)||(balle.x < LCDWIDTH))
+  {
+    gb.sound.playCancel();
+    initJeu();
+    score = 0;
+  }
+int d = (xPanier+4 - balle.x)*(xPanier+4 - balle.x) + (yPanier+4 - balle.y)*(yPanier+4 - balle.y);
+  if (d < ((balle.r+4)*(balle.r+4)))
+  {
+    gb.sound.playOK();
+    score += 1;
+    initJeu();
+  }
+  if (score > mscore)
+  {
+    mscore = score;
+  }
 }
 
 /*
