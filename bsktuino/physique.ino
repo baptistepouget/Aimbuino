@@ -4,7 +4,7 @@ void physique(){
   t += 0.1;
   balle.x =  FViser * cos(NViser) *  t + IBallex;
   balle.y = (0.5)*10*t*t + FViser * sin(NViser) * t + IBalley;
-  if ((balle.y > LCDHEIGHT)||(balle.x > LCDWIDTH)||(balle.x < LCDWIDTH))
+  if ((balle.y > LCDHEIGHT)||(balle.x > LCDWIDTH)||(balle.x < 0))
   {
     gb.sound.playCancel();
     initJeu();

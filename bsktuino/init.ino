@@ -7,7 +7,7 @@ void initJeu(){
   FViser = 5;
   t = 0;
   mode = 'v';
-  xPanier = random(24,LCDWIDTH-lPanier);
+  xPanier = random(24,LCDWIDTH-12);
   yPanier = random(6,LCDHEIGHT-8);
 }
 

@@ -16,7 +16,6 @@ B00011000,
 char mode = 'v';
 int score = 0;
 int mscore = 0;
-int lPanier = 12;
 int xPanier = 50;
 int yPanier = 20;
 int IBallex = 6;
@@ -42,7 +41,7 @@ void setup() {
   //Serial.begin(9600);
   gb.begin();
   initJeu();
-  gb.titleScreen(F("Basketuino"));
+  gb.titleScreen(F("AimBuino"));
   gb.pickRandomSeed();
 
 }
@@ -60,7 +59,7 @@ void loop() {
     }
     decor();
     if (gb.buttons.pressed(BTN_C)) {
-      gb.titleScreen(F("Basketuino"));
+      gb.titleScreen(F("AimBuino"));
       initJeu(); 
       score = 0;
       }
