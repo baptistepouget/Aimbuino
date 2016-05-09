@@ -7,20 +7,17 @@ void physique(){
   if ((balle.y > LCDHEIGHT)||(balle.x > LCDWIDTH)||(balle.x < 0))
   {
     gb.sound.playCancel();
+    perdu = 1;
     initJeu();
-    score = 0;
   }
-int d = (xPanier+4 - balle.x)*(xPanier+4 - balle.x) + (yPanier+4 - balle.y)*(yPanier+4 - balle.y);
+  int d = (xPanier+4 - balle.x)*(xPanier+4 - balle.x) + (yPanier+4 - balle.y)*(yPanier+4 - balle.y);
   if (d < ((balle.r+4)*(balle.r+4)))
   {
     gb.sound.playOK();
     score += 1;
     initJeu();
   }
-  if (score > mscore)
-  {
-    mscore = score;
-  }
+
 }
 
 /*

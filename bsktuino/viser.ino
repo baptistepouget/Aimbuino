@@ -11,13 +11,16 @@ void viser(){
     NViser -= PI/64;
   }
     if (gb.buttons.repeat(BTN_B,1)){
-    FViser += 1;
+    FViser += sensFViser;
   }
-  if (gb.buttons.released(BTN_B) || (FViser >= 16)){
+  if (gb.buttons.released(BTN_B)){
     FViser *= 2;
     t = 0;
     mode = 'p';
     gb.sound.playTick();
+    }
+    if ((FViser > 17)||(FViser < 5)){
+      sensFViser *= -1;      
     }
 }
 
