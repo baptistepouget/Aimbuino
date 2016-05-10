@@ -7,7 +7,7 @@ void challenge() {
   }
   gb.display.println("");
   gb.display.print(60.0 - ( tpsF / 20.0));
-  gb.display.print("s");
+  gb.display.print(F("s"));
 }
 
 

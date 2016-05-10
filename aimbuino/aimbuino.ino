@@ -67,6 +67,10 @@ void setup() {
   {
     save.leaderBoard[i].mode = 'c';
   }
+ //to clean up eeprom
+/*for (int i = 0 ; i < EEPROM.length() ; i++) {
+  EEPROM.write(i, 0);
+  }*/
  // Serial.begin(9600);
   gb.begin();
   gb.titleScreen(F("AimBuino"));
@@ -79,7 +83,6 @@ void loop() {
   if (gb.update()){
 //    Serial.println(save.leaderBoard[0].pseudo);    
 //    Serial.println(save.leaderBoard[3].pseudo);
-
     if ((gameMode == ('c'))||(gameMode == ('f'))){
       decor();
       switch (mode){
@@ -144,24 +147,24 @@ void loop() {
         for (int i=0; i<3; i++)
        {
            if ((save.leaderBoard[i].score < score)&&(gameMode == 'c')){
-            for (int j=3; j>i;j--)
+            for (int j=2; j>i;j--)
             {
               save.leaderBoard[j] = save.leaderBoard[j-1];
             }
             save.leaderBoard[i].score = score;
             gb.keyboard(save.leaderBoard[i].pseudo,8);
-            i = 7;
+            i = 3;
             saveData();
 
           }
           if ((save.leaderBoard[i+3].score < score)&&(gameMode == 'f')){
-            for (int j= 6; j>i;j--)
+            for (int j= 2; j>i;j--)
             {
-              save.leaderBoard[j] = save.leaderBoard[j-1];
+              save.leaderBoard[j+3] = save.leaderBoard[j+3-1];
             }
             save.leaderBoard[i+3].score = score;
             gb.keyboard(save.leaderBoard[i+3].pseudo,8);
-            i = 7;
+            i = 3;
             saveData();
            }
         }

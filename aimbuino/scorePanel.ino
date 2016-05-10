@@ -1,5 +1,7 @@
 void scorePanel() 
 {
+      gb.display.cursorX = 0;
+      gb.display.cursorY = 0;
       restoreData();
       gb.display.println("LeaderBoard : ");
       gb.display.println("Challenge / Free mode");
