@@ -1,6 +1,7 @@
 #include <EEPROM.h>
 #include <SPI.h>
 #include <Gamebuino.h>
+
 Gamebuino gb;
 
 const char strFreeMode[] PROGMEM = "Free Mode";
@@ -66,16 +67,19 @@ void setup() {
   {
     save.leaderBoard[i].mode = 'c';
   }
-  //Serial.begin(9600);
+ // Serial.begin(9600);
   gb.begin();
-  initJeu();
   gb.titleScreen(F("AimBuino"));
   gb.pickRandomSeed();
+  initJeu();
 
 }
 
 void loop() {
   if (gb.update()){
+//    Serial.println(save.leaderBoard[0].pseudo);    
+//    Serial.println(save.leaderBoard[3].pseudo);
+
     if ((gameMode == ('c'))||(gameMode == ('f'))){
       decor();
       switch (mode){
@@ -109,7 +113,8 @@ void loop() {
       break;
       case 1:
       perdu = 0;
-      gameMode = 'c';      
+      gameMode = 'c';
+      tpsD = gb.frameCount;      
       score = 0;
       initJeu();
       break;
@@ -128,42 +133,44 @@ void loop() {
       }
       break;
     }
-    if ((gb.buttons.pressed(BTN_C))||(perdu)) {
-      gameMode = 'l';
-      if (gb.buttons.pressed(BTN_A)){
+    if (perdu) {
+
+   /*   if (gb.buttons.pressed(BTN_C)){
         gameMode = 'm';
         perdu = 0;
-      }
+      }*/
       initJeu();   
-       for (int i=0; i<sizeof(save); i++)
-     ((uint8_t*)&save)[i] = EEPROM.read(i);
-           if (score > mscore)
-      {      
+    
         for (int i=0; i<3; i++)
        {
            if ((save.leaderBoard[i].score < score)&&(gameMode == 'c')){
+            for (int j=3; j>i;j--)
+            {
+              save.leaderBoard[j] = save.leaderBoard[j-1];
+            }
             save.leaderBoard[i].score = score;
             gb.keyboard(save.leaderBoard[i].pseudo,8);
             i = 7;
+            saveData();
 
           }
           if ((save.leaderBoard[i+3].score < score)&&(gameMode == 'f')){
+            for (int j= 6; j>i;j--)
+            {
+              save.leaderBoard[j] = save.leaderBoard[j-1];
+            }
             save.leaderBoard[i+3].score = score;
             gb.keyboard(save.leaderBoard[i+3].pseudo,8);
             i = 7;
-          }
+            saveData();
+           }
         }
-         for (int i=0; i<sizeof(save);i++)
-        {
-            EEPROM.write(i,((uint8_t*)&save)[i]);
-         }
-         perdu = 1;
-       }
-
-
+        perdu = 0;
+        gameMode = 'l';
       }
       }
 }
+
 
 
 
