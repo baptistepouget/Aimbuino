@@ -67,7 +67,6 @@ void setup() {
   {
     save.leaderBoard[i].mode = 'c';
   }
-  restoreData();
  //to clean up eeprom
 /*for (int i = 0 ; i < EEPROM.length() ; i++) {
   EEPROM.write(i, 0);
@@ -77,6 +76,7 @@ void setup() {
   gb.titleScreen(F("AimBuino"));
   gb.pickRandomSeed();
   initJeu();
+  restoreData();
 
 }
 
